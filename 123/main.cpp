@@ -2,12 +2,10 @@
 using namespace std;
 int main()
 {
-    int n[100];
-    int *a;
-    scanf("%d",&n[1]);
-    a=&n[0];
-    printf("%p\n",&n);
-    printf("%p\n",a);
-    printf("%d",*(a+1));
+    int x=3,y=8,w=5,r;
+    x=y%x;
+    w*= ++x + y--;
+    r*= --x + y++;
+    printf("%d",r);
     return 0;
 }
