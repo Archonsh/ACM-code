@@ -1,3 +1,9 @@
+/*
+ * just simple greedy
+ * always pick the cheapest mouse to fulfil the requirement
+ *
+ */
+
 #include <cstdio>
 #include <vector>
 #include <algorithm>

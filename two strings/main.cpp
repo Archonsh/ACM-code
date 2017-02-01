@@ -2,23 +2,51 @@
 #include <cstring>
 #include <vector>
 #include <algorithm>
+#include <iostream>
 using namespace std;
-vector<int>a[30];
+string a,b;
 int main() {
-    int n,i,j,k,t,count=1,ptr[30];
-    while(scanf("%d",&t))
+    int n,i,j,k,t,count=1,ptr=0,front_p,end_p,bfront,bend;
+    cin>>a;
+    cin>>b;
+    for(i=0;i<b.size();i++)
     {
-        if(t<97)
-            break;
-        a[t-97].push_back(count);
+        while(ptr<a.size())
+        {
+            if(a[ptr]==b[i])
+            {
+                front_p=ptr++;
+                bfront=i;
+                break;
+            }
+            ptr++;
+        }
     }
-    while(scanf("%d",&t))
+    ptr=a.size()-1;
+    for(i=b.size()-1;i>=0;i--)
     {
-        if(t<97)
-            break;
-        if(ptr[t]>a[t].size())
-            break;
-        ptr[t]++;
+        while(ptr>=0)
+        {
+            if(a[ptr]==b[i])
+            {
+                end_p=ptr--;
+                bend=i;
+                break;
+            }
+            ptr--;
+        }
     }
+    if(bfront>=bend)
+        cout<<b;
+    if(end_p<front_p)
+        if(b.size()-bend>bfront)
+            cout<<b+bend;
+        else
+            for(i=0;i<bfront;i++)
+                cout<<b[i];
+    if(end_p>front_p)
+
+
+
     return 0;
 }

@@ -56,6 +56,7 @@ int main()
                     {
                         tmp.v=dp[k][t].v+1;
                         tmp.ans=dp[k][t].ans;         // 保存由什么状态转移而来
+                        //vector 复制 直接用 =
                         tmp.ans.push_back(a[i]);      // 加上自己
                     }
 
