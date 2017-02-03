@@ -1,3 +1,8 @@
+/*
+ * note if a==0 && b==0
+ * it's NO b/c the 1<=r<=l must contain at least 1 element
+ */
+
 #include <cstdio>
 #include <cstdlib>
 using namespace std;

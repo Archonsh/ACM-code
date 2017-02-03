@@ -1,3 +1,7 @@
+/*
+ * enumerate all possible intervals
+ *
+ */
 #include <cstdio>
 #include <algorithm>
 using namespace std;

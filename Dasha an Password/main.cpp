@@ -1,3 +1,10 @@
+/*
+ * iterate the string to find all minimum components
+ * of the 3 type of characters
+ *
+ * All others the pointer remains at ZERO
+ */
+
 #include <cstdio>
 #include <cstring>
 #include <cstdlib>
@@ -5,6 +12,7 @@
 #include <algorithm>
 using namespace std;
 char ch[55][55];
+bool visited[55][55][55];
 struct node{
     int val,pos;
     bool operator <  (node a) const
@@ -15,6 +23,7 @@ struct node{
 int ans=0x3f3f3f3f,n,m;
 void dfs(int a,int b,int c)
 {
+    visited[a][b][c]=1;
     if(a==n || b==n || c==n)
         return;
     if(dmin[a].pos!=amin[b].pos && dmin[a].pos!=chmin[c].pos && amin[b].pos!=chmin[c].pos)
@@ -22,9 +31,9 @@ void dfs(int a,int b,int c)
         ans=min(ans,dmin[a].val+amin[b].val+chmin[c].val);
         return;
     }
-    dfs(a+1,b,c);
-    dfs(a,b+1,c);
-    dfs(a,b,c+1);
+    if(!visited[a+1][b][c]) dfs(a+1,b,c);
+    if(!visited[a][b+1][c]) dfs(a,b+1,c);
+    if(!visited[a][b][c+1]) dfs(a,b,c+1);
 }
 int main() {
     int i,j,a,b,c;
@@ -67,6 +76,7 @@ int main() {
     sort(dmin+1,dmin+n+1);
     sort(amin+1,amin+n+1);
     sort(chmin+1,chmin+n+1);
+    memset(visited,0, sizeof(visited));
     dfs(1,1,1);
     printf("%d",ans);
     return 0;

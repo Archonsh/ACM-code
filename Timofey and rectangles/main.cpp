@@ -1,88 +1,43 @@
+/*
+ * 充分利用题目中odd的条件
+ * 对于任意两个相邻矩形 其右下角点 x y 坐标的奇偶性 一定不同
+ * 因为边长为odd
+ * odd+(odd)=even
+ * even+(odd)=odd
+ *
+ * 所以   相邻 ----> 奇偶性不同
+ * 所以   奇偶性相同 -----> 不相邻 (by contrapositive)
+ *
+ * 所以只需 4个颜色 分别对应右下角坐标
+ * (odd,odd)
+ * (odd,even)
+ * (even,odd)
+ * (even,even)
+ *
+ */
+
 #include <cstdio>
 #include <vector>
 #include <cstring>
 #include <algorithm>
 using namespace std;
-struct node{
-    int x,y,a,b;
-}cd[500005];
-vector<int>map[500005];
-struct ins{
-    int v,pos;
-    bool operator <  (const ins &a) const
-    {
-        return a.v<v;
-    }
 
-}ind[500005];
-int n,color[500005],flag=0;
-
-void bfs(int p)
+int main()
 {
-    if(color[p]==0)
-    {
-        color[p]=1;
-    }
-    int i,j,len=map[p].size();
-    for(i=0;i<len;i++)
-    {
-        if(!color[map[p][i]])
-        {
-            color[p]=2;
-        }
-        else
-        {
-            if(color[p]==color[map[p][i]])
-            {
-                color[map[p][i]]++;
-                if(color[map[p][i]>4])
-                {
-                    printf("NO\n");
-                    return;
-                }
-            }
-        }
-    }
-}
-int main() {
-    int i,j;
-    scanf("%d",&n);
-    memset(ind,0,sizeof(ind));
-    memset(color,0,sizeof(color));
-    for(i=1;i<=n;i++)
-    {
-        scanf("%d%d%d%d",&cd[i].x,&cd[i].y,&cd[i].a,&cd[i].b);
-        ind[i].pos=i;
-    }
-
-    for(i=1;i<n;i++) {
-        for (j = i + 1; j <= n; j++) {
-            if (!(cd[i].x - cd[j].x) || !(cd[i].x - cd[j].a) || !(cd[i].a - cd[j].x) || !(cd[i].a - cd[i].x)) {
-                if ( (cd[i].x <= cd[j].x && cd[j].x < cd[i].a) || (cd[i].x < cd[j].a && cd[j].a <= cd[i].a)) {
-                    map[i].push_back(j);
-                    map[j].push_back(i);
-                    ind[i].v++;
-                    ind[j].v++;
-                }
-            }
-            else if (!(cd[i].y - cd[j].b) || !(cd[i].y - cd[j].y) || !(cd[i].b - cd[j].b) || !(cd[i].b - cd[j].y)) {
-                if ( (cd[i].y <= cd[j].y && cd[j].y < cd[i].b) || (cd[i].y < cd[j].b && cd[j].b <= cd[i].b)) {
-                    map[i].push_back(j);
-                    map[j].push_back(i);
-                    ind[i].v++;
-                    ind[j].v++;
-                }
-            }
-
-        }
-    }
-    sort(ind+1,ind+n+1);
-    for(i=1;i<=n;i++)
-    {
-        flag=0;
-        bfs(ind[i].pos);
-    }
-    for(i=1;i<=n;i++)
-        printf("%d\n",color[i]);
-    return 0;
+	printf("YES\n");
+	int n, a, b, c, d;
+	scanf("%d", &n);
+	for (int i = 1; i <= n; i++)
+	{
+		scanf("%d%d%d%d", &a, &b, &c, &d);
+		if (!(a % 2) && !(b % 2))  //(0,0)
+			printf("3\n");
+		else if (!(a % 2) && (b % 2))  //(0,1)
+			printf("4\n");
+		else if ((a % 2) && !(b % 2))  //(1,0)
+			printf("2\n");
+		else                          //(1,1)
+			printf("1\n");
+	}
+	return 0;
 }
