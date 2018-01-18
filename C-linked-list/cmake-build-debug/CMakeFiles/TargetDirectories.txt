@@ -1,3 +1,0 @@
-/Users/Archon/Documents/ACM/ACM-code/C-linked-list/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/Archon/Documents/ACM/ACM-code/C-linked-list/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/Archon/Documents/ACM/ACM-code/C-linked-list/cmake-build-debug/CMakeFiles/C_linked_list.dir
